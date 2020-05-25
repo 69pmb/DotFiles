@@ -1,2 +1,1 @@
-# DotFiles
-my personal dot files, snippets and others things
+# [DotFiles](https://69pmb.github.io/DotFiles)
