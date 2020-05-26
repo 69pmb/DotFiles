@@ -9,3 +9,4 @@ title: DotFiles
 ### 5. [gitconfig](gitconfig.md)
 ### 6. [Maven](Maven.md)
 ### 7. [PostgreSQL](PostgreSQL.md)
+### 8. [Vagrant](Vagrantfile.md)
