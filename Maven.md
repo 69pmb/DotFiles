@@ -19,3 +19,27 @@
   </configuration>
 </plugin>
 ```
+- Run jacoco coverage unit test:  
+`mvn test`  
+Reporting can be found in `target/site/jacoco/index.html`
+
+```xml
+<plugin>
+  <groupId>org.jacoco</groupId>
+  <artifactId>jacoco-maven-plugin</artifactId>
+  <executions>
+    <execution>
+      <goals>
+        <goal>prepare-agent</goal>
+      </goals>
+    </execution>
+    <execution>
+      <id>report</id>
+      <phase>test</phase>
+      <goals>
+        <goal>report</goal>
+      </goals>
+    </execution>
+  </executions>
+</plugin>
+```
