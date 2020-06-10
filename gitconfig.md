@@ -14,6 +14,7 @@
 	fscache = true
 	symlinks = false
 	quotePath = false
+	untrackedCache = true
 	editor = \"C:\\\\Program Files\\\\Notepad++\\\\notepad++.exe\" -multiInst -notabbar -nosession -noPlugin
 
 [user]
@@ -21,23 +22,46 @@
 	name = xxx
 
 [alias]
+	# Push
 	ps = push
 	pf = push --force-with-lease
-	pl = pull --rebase --autostash
-	br = branch -a
-	st = status -sb
-	co = commit
-	ck = checkout
-	fc = fetch --all --prune
+	# Commit
+	co = commit -m 
 	fix = commit --fixup
+	oops = commit --amend --no-edit
+	# Stash
 	sh = stash
 	list = stash list
 	pop = stash pop
+	shs = stash show -p
+	# Rebase
+	pl = pull --rebase --autostash
+	re = rebase
+	rea = rebase --abort
+	rec = rebase --continue
+	rei = rebase --interactive
+	res = rebase --skip
+	ras = rebase -i --autosquash
+	# Branch
+	br = branch -a
+	brs = branch --sort=-committerdate
+	brv = for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:white)%(color:bold)%(refname:short)\" refs/remotes
+	# Checkout
+	ck = checkout
+	ckf = checkout -f
+	ckb = checkout -b
+	# Cherry
+	cp = cherry-pick
+	cpc = cherry-pick --continue
+	# Various
+	aliases = config --get-regexp alias
+	st = status -sb
+	fc = fetch --all --prune
 	lg = log --graph --date=format:'%d/%m/%Y %H:%M:%S' --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ad)%Creset'
+	last = log -n 1 --oneline 
 	clear = remote prune origin
-	oops = commit --amend --no-edit
 	diffw = diff --ignore-space-at-eol -b -w --ignore-blank-lines
-	squash = rebase -i --autosquash
+	contributor = shortlog --summary --numbered -c -e
 	
 [pull]
 	# This is GREAT… when you know what you're doing and are careful
@@ -53,9 +77,6 @@
 	# Recursively traverse untracked directories to display all contents
 	showUntrackedFiles = all
 
-[color]
-	ui = auto
-
 [stash]
 	showPatch = true
 
@@ -65,6 +86,9 @@
 [rebase]
 	autoStash = true
 	abbreviateCommands = true
+
+[color]
+	ui = auto
 
 [color "branch"]
 	# Blue on black is hard to read in git branch -vv: use cyan instead

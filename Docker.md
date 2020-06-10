@@ -13,7 +13,7 @@ docker run --restart always --name mysql \
   -ti -d -e MYSQL_DATABASE=ticketmaster \
   -e MYSQL_USER=ticketmaster -e MYSQL_ROOT_HOST=0.0.0.0 \
   -e MYSQL_PASSWORD=ticketmaster -e MYSQL_ROOT_PASSWORD=root -p 3306:3306 \
-  -v /tmp/mysql:/var/lib/mysql mysql --character-set-server=utf8mb4 \ 
+  -v /tmp/mysql:/var/lib/mysql mysql --character-set-server=utf8mb4 \
   --collation-server=utf8mb4_0900_as_cs
 ```
 - Go inside MySql container:  
