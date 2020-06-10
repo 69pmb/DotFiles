@@ -10,4 +10,5 @@ title: DotFiles
 ### 6. [Maven](Maven.md)
 ### 7. [PostgreSQL](PostgreSQL.md)
 ### 8. [Vagrant](Vagrantfile.md)
-### 8. [EditorConfig](editorconfig.md)
+### 9. [EditorConfig](editorconfig.md)
+### 10. [Proxy](Proxy.md)
