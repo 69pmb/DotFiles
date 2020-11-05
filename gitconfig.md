@@ -33,7 +33,9 @@
 	sh = stash
 	list = stash list
 	pop = stash pop
-	shs = stash show -p
+	shp = stash show -p
+	shs = stash save
+	shd = stash drop 
 	# Rebase
 	pl = pull --rebase --autostash
 	re = rebase
@@ -61,7 +63,8 @@
 	last = log -n 1 --oneline 
 	clear = remote prune origin
 	diffw = diff --ignore-space-at-eol -b -w --ignore-blank-lines
-	contributor = shortlog --summary --numbered -c -e
+	diffc = diffw --cached
+	contributor = shortlog -sne -c 
 	
 [pull]
 	# This is GREAT… when you know what you're doing and are careful
@@ -112,7 +115,10 @@
 [branch "master"]
   remote = origin
   merge = refs/heads/master
-  
+
+[merge]
+  conflictstyle = diff3
+
 [push]
 	default = current
 [credential]
