@@ -1,14 +1,29 @@
 ## Maven
 - Execute specific test:  
-`mvn -Dtest= test`
+`mvn -Dtest=my.package.myClassTest test`
 - Skip test:  
 `mvn install -q -Dmaven.test.skip=true`
 - Run Spring boot local:  
 `mvn spring-boot:run -Dspring-boot.run.profiles=local`  
 `mvn spring-boot:run -Drun.jvmArguments="-Dspring.profiles.active=local -Djava.net.useSystemProxies=true" `
+- Run flyway migration:  
+`mvn flyway:migrate`
+```xml
+<plugin>
+  <groupId>org.flywaydb</groupId>
+  <artifactId>flyway-maven-plugin</artifactId>
+  <configuration>
+    <user>usr</user>
+    <password>pwd</password>
+    <url>jdbc:postgresql://localhost:6002/db</url>
+    <locations>
+      <location>filesystem:src/main/resources/migration-scripts</location>
+    </locations>
+  </configuration>
+</plugin>
+```
 - Run liquibase scripts:  
 `mvn liquibase:update`
-
 ```xml
 <plugin>
   <groupId>org.liquibase</groupId>
