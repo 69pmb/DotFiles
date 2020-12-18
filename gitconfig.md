@@ -50,21 +50,25 @@
 	brv = for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:white)%(color:bold)%(refname:short)\" refs/remotes
 	# Checkout
 	ck = checkout
-	ckf = checkout -f
-	ckb = checkout -b
+	ckf = ck -f
+	ckb = ck -b
 	# Cherry
 	cp = cherry-pick
-	cpc = cherry-pick --continue
+	cpc = cp --continue
 	# Various
-	aliases = config --get-regexp alias
+	ap = add -p
+	alias = config --get-regexp alias
 	st = status -sb
 	fc = fetch --all --prune
 	lg = log --graph --date=format:'%d/%m/%Y %H:%M:%S' --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ad)%Creset'
-	last = log -n 1 --oneline 
+	lgn = lg --oneline -n
+	last = lgn 1
 	clear = remote prune origin
-	diffw = diff --ignore-space-at-eol -b -w --ignore-blank-lines
-	diffc = diffw --cached
+	dw = diff --ignore-space-at-eol -b -w --ignore-blank-lines
+	dc = dw --cached
 	contributor = shortlog -sne -c 
+	url = remote show origin
+	name = show --name-only
 	
 [pull]
 	# This is GREAT… when you know what you're doing and are careful
@@ -91,7 +95,10 @@
 	abbreviateCommands = true
 
 [color]
-	ui = auto
+	branch = auto
+	diff = auto
+	status = auto
+	ui = true
 
 [color "branch"]
 	# Blue on black is hard to read in git branch -vv: use cyan instead

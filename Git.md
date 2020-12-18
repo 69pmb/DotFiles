@@ -85,7 +85,7 @@ git reset
 * Git history of directory:  
 `git lg -- path/to/folder`
 * Search in diff:  
-`git log -p -S'' --name-only`
+`git log -i -Gtext --name-only`
 * Search in commit message:  
 `git log --all --grep='text'`
 
