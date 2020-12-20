@@ -66,17 +66,12 @@
 	clear = remote prune origin
 	dw = diff --ignore-space-at-eol -b -w --ignore-blank-lines
 	dc = dw --cached
-	contributor = shortlog -sne -c 
+	contributor = shortlog -sne
 	url = remote show origin
 	name = show --name-only
 	
 [pull]
-	# This is GREAT… when you know what you're doing and are careful
-	# not to pull --no-rebase over a local line containing a true merge.
 	rebase = true
-	# WARNING! This option, which does away with the one gotcha of
-	# auto-rebasing on pulls, is only available from 1.8.5 onwards.
-	# rebase = preserve
 
 [status]
 	# Display submodule rev change summaries in status
