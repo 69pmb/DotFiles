@@ -18,15 +18,25 @@ docker run --restart always --name mysql \
 ```
 - Go inside MySql container:  
 `docker exec -it mysql mysql -uticketmaster -pticketmaster`
+- Show you how much disk space you’re using and how much can be potentially reclaimed:  
+`docker system df`  
+- Remove all stopped containers, networks not used, dangling images, build cache and images that are no longer referenced:  
+`docker system prune -a`  
 - Deletes all volumes with a specific name:  
 `docker volume ls -f name=runner --format "{{.Name}}" | xargs docker volume rm`
 - Deletes all containers *exited*:  
 `docker ps -aq -f status=exited | xargs -r docker rm`
+- Check the resource usage of containers running:  
+`docker stats`  
+- See what processes are running inside a container:  
+`docker top <container>`  
+- To see how a container’s file system has changed since it was created:  
+`docker diff <container>`  
 - Clean up docker datas:  
 ```bash
 docker image prune -a --filter "until=170h" -f
 docker container prune --filter "until=170h" -f
 docker network prune --filter "until=170h" -f
 ```
-- Go inside volume:  
+- Go inside a volume:  
 `docker run -it -v=postgres-data:/var/lib/docker/volumes/44ddfb270f899a016434a24c57a8c50cf92dbd7d20b5305b28f1d6acde965839/_data busybox /bin/sh`
