@@ -2,7 +2,7 @@
 - Log in:  
 `psql -h localhost -p 5432 -U <user> -d <database>`
 - List db:  
-`\list`
+`\list` or `\c`  
 - Switch db:  
 `\connect dbname` or `\c db`
 - List table:  
