@@ -1,13 +1,18 @@
 ## Maven
 - Execute specific test:  
-`mvn -Dtest=my.package.myClassTest test`
+`mvn -Dtest=my.package.myClassTest test`  
+`mvn -Dtest=my.package.myClassTest#myTestCase test`
 - Skip test:  
+`mvn clean install -DskipTests`  
 `mvn install -q -Dmaven.test.skip=true`
 - Run Spring boot local:  
 `mvn spring-boot:run -Dspring-boot.run.profiles=local`  
-`mvn spring-boot:run -Drun.jvmArguments="-Dspring.profiles.active=local -Djava.net.useSystemProxies=true" `
+`mvn spring-boot:run -Drun.jvmArguments="-Dspring.profiles.active=local`  
+- Release:  
+Clean workdir, scm tags completed in `pom.xml` and no SNAPSHOT dependencies  
+`mvn release:prepare release:perform -Dgoals=deploy -Dtag=<release_version> -DdevelopmentVersion=<next_version>-SNAPSHOT -DreleaseVersion=<release_version> -Darguments=-DskipTests -DskipTests -Dmaven.javadoc.skip=true -DpushChanges=false`
 - Run flyway migration:  
-`mvn flyway:migrate`
+`mvn flyway:migrate`  
 ```xml
 <plugin>
   <groupId>org.flywaydb</groupId>
