@@ -1,3 +1,6 @@
+---
+title: Git commands
+---  
 ### 1. [Divers](#divers)
 ### 2. [Reset](#reset)
 ### 3. [Stash](#stash)
@@ -53,7 +56,11 @@ git checkout -- .
 git reset
 ```
 * Rebase accepting all rebased branch conflicts:  
-`git rebase -X theirs <branch>`
+`git rebase -X theirs <branch>`  
+* Resolves merge conflicts (with `ours` or `theirs`):  
+`git checkout --ours <file>`
+* Include config file:  
+`git config include.path "../.gitconfig"`  
 
 ## Reset
 * Remove from stage:  
@@ -62,7 +69,8 @@ git reset
 `git reset <file>`
 * Reset all modifications:  
 `git reset --hard`
-
+* Reset a commit and keep file in stage:  
+`git reset <hash> --soft`
 
 ## Stash  
 * Stash with message:  
@@ -108,20 +116,23 @@ git reset
 Report can be seen at `.git\filter-repo\analysis`  
 Deleted files sort by size are avaible in `path-deleted-sizes.txt`    
 * Removes a file from history:  
-`git filter-repo --force --invert-paths --path-glob "path/to/file"`
+`git filter-repo --force --invert-paths --path-glob "path/to/file"`  
 To push, we must do `git remote add origin https://github.com/xxx/zzz.git` and then `git push --force`  
 * Remapping committers and authors name and email:  
 `git filter-repo --mailmap mailmap.txt`  
 with mapping file:  
+
 ```txt
 Name For User <email@addre.ss>
 <new@ema.il> <old1@ema.il>
 New Name And <new@ema.il> <old2@ema.il>
 New Name And <new@ema.il> Old Name And <old3@ema.il>
 ```
+
 * Replaces content:  
 `git filter-repo --replace-text exp.txt`  
-with `exp.txt` containing:
+with `exp.txt` containing:  
+
 ```txt
 p455w0rd
 foo==>bar
@@ -131,4 +142,5 @@ regex:\bdriver\b==>pilot
 literal:MM/DD/YYYY==>YYYY-MM-DD
 regex:([0-9]{2})/([0-9]{2})/([0-9]{4})==>\3-\1-\2
 ```
+
 will go through and replace p455w0rd with ***REMOVED***, foo with bar, any line containing 666 with a blank line, the word driver with pilot (but not if it has letters before or after; e.g. drivers will be unmodified), replace the exact text MM/DD/YYYY with YYYY-MM-DD and replace date strings of the form MM/DD/YYYY with ones of the form YYYY-MM-DD. Every line has a replacement, given by whatever is on the right of ==>. If ==> does not appear on the line, the default replacement is ***REMOVED***. If multiple matches are found, all are replaced. 
