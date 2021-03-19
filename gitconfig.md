@@ -10,7 +10,7 @@
 	sslBackend = openssl
 	sslCAInfo = C:/Program Files/Git/mingw64/ssl/certs/ca-bundle.crt
 [core]
-	autocrlf = true
+	autocrlf = input
 	fscache = true
 	symlinks = false
 	quotePath = false
@@ -25,50 +25,65 @@
 	# Push
 	ps = push
 	pf = push --force-with-lease
+	
 	# Commit
 	co = commit -m 
+	ca = commit --amend
 	fix = commit --fixup
-	oops = commit --amend --no-edit
+	oops = ca --no-edit
+	gloops = !git add . & git oops & git pf
+	
 	# Stash
 	sh = stash
 	list = stash list
-	pop = stash pop
-	shp = stash show -p
-	shs = stash save
-	shd = stash drop 
+	shl = list
+	pop = sh pop
+	shp = sh show -p
+	shs = sh save
+	shd = sh drop 
+	shc = sh clear
+	
 	# Rebase
 	pl = pull --rebase --autostash
 	re = rebase
-	rea = rebase --abort
-	rec = rebase --continue
-	rei = rebase --interactive
-	res = rebase --skip
-	ras = rebase -i --autosquash
+	rea = re --abort
+	rec = re --continue
+	rei = re --interactive
+	res = re --skip
+	ras = rei --autosquash
+	
 	# Branch
 	br = branch -a
 	brs = branch --sort=-committerdate
 	brv = for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:white)%(color:bold)%(refname:short)\" refs/remotes
+	
 	# Checkout
 	ck = checkout
 	ckf = ck -f
 	ckb = ck -b
+	ckp = ck -p
+	
 	# Cherry
 	cp = cherry-pick
 	cpc = cp --continue
+	cpa = cp --abort
+	
 	# Various
 	ap = add -p
 	alias = config --get-regexp alias
 	st = status -sb
 	fc = fetch --all --prune
 	lg = log --graph --date=format:'%d/%m/%Y %H:%M:%S' --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ad)%Creset'
-	lgn = lg --oneline -n
+	lgn = lg -n
 	last = lgn 1
 	clear = remote prune origin
+	sw = show  --ignore-space-at-eol -b -w --ignore-blank-lines
 	dw = diff --ignore-space-at-eol -b -w --ignore-blank-lines
 	dc = dw --cached
-	contributor = shortlog -sne
+	contributor = shortlog -sne -c 
 	url = remote show origin
 	name = show --name-only
+	fixme = "!f() { git add $1 & git fix $2 & git ras $2^;}; f"
 	
 [pull]
 	rebase = true
