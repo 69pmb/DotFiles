@@ -1,3 +1,6 @@
+---
+title: Proxy settings
+---  
 #### Sets proxy for unix systems:  
 
 ```bash

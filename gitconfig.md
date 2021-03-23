@@ -1,3 +1,6 @@
+---
+title: Git config
+---  
 ```bash
 [diff "astextplain"]
 	textconv = astextplain
