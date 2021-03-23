@@ -1,3 +1,6 @@
+---
+title: Vagrant file
+---  
 ```bash
 required_plugins = %w( vagrant-vbguest vagrant-proxyconf )
 required_plugins.each do |plugin|

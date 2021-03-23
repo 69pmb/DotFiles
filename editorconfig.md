@@ -1,3 +1,6 @@
+---
+title: editor config
+---  
 ```bash
 root = true
 
