@@ -46,6 +46,8 @@ git commit -c ORIG_HEAD
 `git gui blame`
 * Use `git` in another directory:  
 `git <cmd> -C <path>`
+* Find a bug in history:  
+`git bisect <last_good_hash>`
 * Remove untrack files:  
 `git clean -f`
 * Remove whitespace changes:  
