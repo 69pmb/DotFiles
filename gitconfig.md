@@ -35,6 +35,7 @@ title: Git config
 	fix = commit --fixup
 	oops = ca --no-edit
 	gloops = !git add . & git oops & git pf
+	glops = "!f() { git add $1 & git oops & git pf^;}; f"
 	
 	# Stash
 	sh = stash
@@ -54,6 +55,10 @@ title: Git config
 	rei = re --interactive
 	res = re --skip
 	ras = rei --autosquash
+	
+	# Reflog
+	rl = reflog --date=relative
+	rln = rl -n
 	
 	# Branch
 	br = branch -a
@@ -79,6 +84,7 @@ title: Git config
 	lg = log --graph --date=format:'%d/%m/%Y %H:%M:%S' --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ad)%Creset'
 	lgn = lg -n
 	last = lgn 1
+	lt = last
 	clear = remote prune origin
 	sw = show  --ignore-space-at-eol -b -w --ignore-blank-lines
 	dw = diff --ignore-space-at-eol -b -w --ignore-blank-lines
