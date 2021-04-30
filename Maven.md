@@ -13,6 +13,7 @@ Clean workdir, scm tags completed in `pom.xml` and no SNAPSHOT dependencies
 `mvn release:prepare release:perform -Dgoals=deploy -Dtag=<release_version> -DdevelopmentVersion=<next_version>-SNAPSHOT -DreleaseVersion=<release_version> -Darguments=-DskipTests -DskipTests -Dmaven.javadoc.skip=true -DpushChanges=false`
 - Run flyway migration:  
 `mvn flyway:migrate`  
+
 ```xml
 <plugin>
   <groupId>org.flywaydb</groupId>
@@ -27,8 +28,10 @@ Clean workdir, scm tags completed in `pom.xml` and no SNAPSHOT dependencies
   </configuration>
 </plugin>
 ```
+
 - Run liquibase scripts:  
-`mvn liquibase:update`
+`mvn liquibase:update`  
+
 ```xml
 <plugin>
   <groupId>org.liquibase</groupId>
@@ -39,6 +42,7 @@ Clean workdir, scm tags completed in `pom.xml` and no SNAPSHOT dependencies
   </configuration>
 </plugin>
 ```
+
 - Run jacoco coverage unit test:  
 `mvn test`  
 Reporting can be found in `target/site/jacoco/index.html`

@@ -1,14 +1,17 @@
 ## MySql
-- Connect to a db: 
+- Connect to a db:  
 `mysql -uticketmaster -pticketmaster`
-- Remove liquibase lock: 
-`UPDATE CONFIGURATION_ADMINISTRATION_DATABASECHANGELOGLOCK SET LOCKED=0, LOCKGRANTED=null, LOCKEDBY=null ;`
-- clean db: 
+- Remove liquibase lock:  
+```sql
+UPDATE CONFIGURATION_ADMINISTRATION_DATABASECHANGELOGLOCK 
+SET LOCKED=0, LOCKGRANTED=null, LOCKEDBY=null ;
+```
+- clean db:  
 ```sql
 DROP database ticketmaster;
 CREATE database ticketmaster;
 ```
-- select db: 
+- select db:  
 `use ticketmaster;`
-- List tables: 
+- List tables:  
 `show tables;`

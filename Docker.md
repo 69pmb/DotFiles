@@ -45,7 +45,15 @@ docker volume prune --filter "until=170h" -f
 ```
 - Run localstack:  
 ```bash
-docker run -ti -d --name localstack -v /home/localstack:/tmp/localstack -p 8080:8080 -p 4567-4584:4567-4584 -e aws_default_region=eu-west-1 -e port_web_ui=8080 localstack/localstack
+docker run -ti -d --name localstack \
+  -v /home/localstack:/tmp/localstack \
+  -p 8080:8080 -p 4567-4584:4567-4584 \
+  -e aws_default_region=eu-west-1 \
+  -e port_web_ui=8080 localstack/localstack
 ```
 - Go inside a volume:  
-`docker run -it -v=postgres-data:/var/lib/docker/volumes/44ddfb270f899a016434a24c57a8c50cf92dbd7d20b5305b28f1d6acde965839/_data busybox /bin/sh`
+```bash
+docker run -it \
+  -v=postgres-data:/var/lib/docker/volumes/<volume_id>/_data busybox \
+  /bin/sh
+```
