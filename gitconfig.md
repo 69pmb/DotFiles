@@ -1,6 +1,7 @@
 ---
 title: Git config
----  
+---
+
 ```bash
 [diff "astextplain"]
 	textconv = astextplain
@@ -28,25 +29,29 @@ title: Git config
 	# Push
 	ps = push
 	pf = push --force-with-lease
-	
+
 	# Commit
-	co = commit -m 
+	co = commit -m
 	ca = commit --amend
 	fix = commit --fixup
+	reco = commit -c ORIG_HEAD
 	oops = ca --no-edit
-	gloops = !git add . & git oops & git pf
-	glops = "!f() { git add $1 & git oops & git pf^;}; f"
-	
+	gloops = "!f() { git add . && git oops && git pf;}; f"
+	glops = "!f() { git add $@ && git oops && git pf;}; f"
+	fixme = "!f() { git add . && git fix $1 && git ras $1~;}; f"
+
 	# Stash
 	sh = stash
-	list = stash list
+	list = stash list --date=format:'%d/%m/%Y %H:%M:%S' --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad)%Creset'
 	shl = list
 	pop = sh pop
 	shp = sh show -p
 	shs = sh save
-	shd = sh drop 
+	shpo = "!sh -c 'git pop stash@{$1}' -"
+	drop = sh drop
+	shd = sh drop
 	shc = sh clear
-	
+
 	# Rebase
 	pl = pull --rebase --autostash
 	re = rebase
@@ -55,45 +60,63 @@ title: Git config
 	rei = re --interactive
 	res = re --skip
 	ras = rei --autosquash
-	
+	fck = "!f() { git fc && git ck $1 && git pl;}; f"
+
 	# Reflog
 	rl = reflog --date=relative
 	rln = rl -n
-	
+
 	# Branch
-	br = branch -a
-	brs = branch --sort=-committerdate
+	br = branch -a --format=\"%(color:green)%(refname:short)\t%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:white)%(objectname:short)\t%(color:yellow)%(contents:subject)\" --sort=-committerdate
+	brr = branch -r --format=\"%(color:green)%(refname:short)\t%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:white)%(objectname:short)\t%(color:yellow)%(contents:subject)\" --sort=-committerdate
 	brv = for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:white)%(color:bold)%(refname:short)\" refs/remotes
-	
+	brd = branch -D
+	brm = branch -m
+	curr = branch --show-current
+	up = "!f() { git rev-parse --abbrev-ref HEAD | xargs -I % git branch --set-upstream-to=origin/% ;}; f"
+	bclean = "!f() { git branch --merged ${1-develop} | grep -v " ${1-develop}$" | xargs -r git branch -d; }; f"
+
 	# Checkout
 	ck = checkout
 	ckf = ck -f
 	ckb = ck -b
 	ckp = ck -p
-	
+
 	# Cherry
 	cp = cherry-pick
 	cpc = cp --continue
 	cpa = cp --abort
-	
+	cps = cp --skip
+
+	# Show
+	sw = show  --ignore-space-at-eol -b -w --ignore-blank-lines
+	name = show --name-only
+	names = name
+	nw = sw --name-only
+
+	# Remote
+	url = remote show origin
+	clear = remote prune origin
+	set-url = remote set-url origin
+
 	# Various
 	ap = add -p
-	alias = config --get-regexp alias
+	erase = "!f() { git add $@ && git reset $@ && git ck $@ ;}; f"
+	alias = "!f() { git config --get-regexp alias | cut -c 7- | sort; }; f"
 	st = status -sb
-	fc = fetch --all --prune
-	lg = log --graph --date=format:'%d/%m/%Y %H:%M:%S' --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ad)%Creset'
+	fc = fetch --all --prune --tags
+	lg = log --graph --date=format:'%d/%m/%Y %H:%M:%S' --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an - %ad)%Creset'
 	lgn = lg -n
 	last = lgn 1
 	lt = last
-	clear = remote prune origin
-	sw = show  --ignore-space-at-eol -b -w --ignore-blank-lines
+	tags = tag
+	rp = reset -p
+	undo=reset --soft HEAD^
 	dw = diff --ignore-space-at-eol -b -w --ignore-blank-lines
 	dc = dw --cached
-	contributor = shortlog -sne -c 
-	url = remote show origin
-	name = show --name-only
-	fixme = "!f() { git add $1 & git fix $2 & git ras $2^;}; f"
-	
+	contributor = shortlog -sne -c
+	adds = "!f() { find . -name "$1" -not -path '*node_modules*' | xargs git add ;}; f"
+
 [pull]
 	rebase = true
 
@@ -108,7 +131,7 @@ title: Git config
 
 [diff]
 	tool = code
-	
+
 [rebase]
 	autoStash = true
 	abbreviateCommands = true
@@ -136,7 +159,7 @@ title: Git config
   added = yellow
   changed = green
   untracked = cyan
-  
+
 # Use `origin` as the default remote on the `master` branch in all cases
 [branch "master"]
   remote = origin
