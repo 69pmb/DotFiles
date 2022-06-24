@@ -14,3 +14,4 @@ title: DotFiles
 ### 10. [Proxy](Proxy.md)
 ### 11. [Bash](Bash.md)
 ### 12. [Bash aliases](bash_aliases.md)
+### 13. [NPM](npm.md)
