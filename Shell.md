@@ -1,4 +1,7 @@
-## Bash
+## Shell
+- [Shell Style guide](https://google.github.io/styleguide/shellguide.html)
+- [ShellCheck](https://www.shellcheck.net) => finds bugs in your shell scripts
+- Match command-line arguments to their help text => [explainshell](https://explainshell.com)
 - Replaces last digit of given software version by a 'x':  
 `echo "5.6.3" | grep -Eoh "[0-9+\.]+\." | xargs -I % echo "%x"`
 - Converts all files to Unix line endings:  
@@ -11,6 +14,5 @@
 `tar -xvzf <filename.tar.gz>`
 - Adds execute permission for the owner of the file:  
 `chmod u+x <file>`
-- Match command-line arguments to their help text: [explainshell](https://explainshell.com)
 - List sizes of current directory recursively:  
 `du -hs *`
