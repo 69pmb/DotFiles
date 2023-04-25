@@ -12,6 +12,6 @@ title: DotFiles
 ### 8. [Vagrant](Vagrantfile.md)
 ### 9. [EditorConfig](editorconfig.md)
 ### 10. [Proxy](Proxy.md)
-### 11. [Bash](Bash.md)
+### 11. [Shell](Shell.md)
 ### 12. [Bash aliases](bash_aliases.md)
 ### 13. [NPM](npm.md)
