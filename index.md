@@ -15,3 +15,4 @@ title: DotFiles
 ### 11. [Shell](Shell.md)
 ### 12. [Bash aliases](bash_aliases.md)
 ### 13. [NPM](npm.md)
+### 14. [ESLint config](eslintrc.md)
