@@ -16,3 +16,5 @@
 `chmod u+x <file>`
 - List sizes of current directory recursively:  
 `du -hs *`
+- Status of last command ('0' => OK, '1' => KO):  
+`echo $?`
