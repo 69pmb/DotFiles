@@ -13,6 +13,7 @@ title: Git config
 [http]
 	sslBackend = openssl
 	sslCAInfo = C:/Program Files/Git/mingw64/ssl/certs/ca-bundle.crt
+	sslVerify = false
 [core]
 	autocrlf = input
 	fscache = true
@@ -31,7 +32,9 @@ title: Git config
 	pf = push --force-with-lease
 
 	# Commit
+	#cbr = "!f() { git rev-parse --abbrev-ref HEAD | sed 's/\//(/g' | sed 's/-/): /2' | sed 's/-/ /g' | sed 's/ /-/1' | xargs -I % git co % ;}; f"
 	co = commit -m
+	coa = "!f() { git add . && git co $1 ;}; f"
 	ca = commit --amend
 	fix = commit --fixup
 	reco = commit -c ORIG_HEAD
@@ -56,11 +59,13 @@ title: Git config
 	pl = pull --rebase --autostash
 	re = rebase
 	rea = re --abort
-	rec = re --continue
+	rec = -c core.editor=true re --continue
 	rei = re --interactive
 	res = re --skip
 	ras = rei --autosquash
 	fck = "!f() { git fc && git ck $1 && git pl;}; f"
+	main = "!f() { git default | xargs -I % git fck % ;}; f"
+	red = "!f() { git main && git ck - && git up && git default | xargs -I % git re $1 ;}; f"
 
 	# Reflog
 	rl = reflog --date=relative
@@ -73,8 +78,9 @@ title: Git config
 	brd = branch -D
 	brm = branch -m
 	curr = branch --show-current
-	up = "!f() { git rev-parse --abbrev-ref HEAD | xargs -I % git branch --set-upstream-to=origin/% ;}; f"
-	bclean = "!f() { git branch --merged ${1-develop} | grep -v " ${1-develop}$" | xargs -r git branch -d; }; f"
+	up = "!f() { git rev-parse --abbrev-ref HEAD | xargs -I % git branch --set-upstream-to=origin/% && git pl ;}; f"
+	bclean = "!f() { main=$(git default); git branch --merged ${1-$main} | grep -v " ${1-$main}$" | xargs -r git branch -d; }; f"
+	default = "!f() { git branch -rl '*/HEAD' | awk -F/ '{print $NF}'; }; f"
 
 	# Checkout
 	ck = checkout
@@ -161,9 +167,9 @@ title: Git config
   untracked = cyan
 
 # Use `origin` as the default remote on the `master` branch in all cases
-[branch "master"]
+[branch "main"]
   remote = origin
-  merge = refs/heads/master
+  merge = refs/heads/main
 
 [merge]
   conflictstyle = diff3
