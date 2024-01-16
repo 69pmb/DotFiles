@@ -31,6 +31,7 @@ title: Git config
 	pf = push --force-with-lease
 
 	# Commit
+	#cbr = "!f() { git rev-parse --abbrev-ref HEAD | sed 's/\//(/g' | sed 's/-/): /2' | sed 's/-/ /g' | sed 's/ /-/1' | xargs git co ;}; f"
 	co = commit -m
 	ca = commit --amend
 	fix = commit --fixup
@@ -56,7 +57,7 @@ title: Git config
 	pl = pull --rebase --autostash
 	re = rebase
 	rea = re --abort
-	rec = re --continue
+	rec = -c core.editor=true re --continue
 	rei = re --interactive
 	res = re --skip
 	ras = rei --autosquash
@@ -73,7 +74,7 @@ title: Git config
 	brd = branch -D
 	brm = branch -m
 	curr = branch --show-current
-	up = "!f() { git rev-parse --abbrev-ref HEAD | xargs -I % git branch --set-upstream-to=origin/% ;}; f"
+	up = "!f() { git rev-parse --abbrev-ref HEAD | xargs -I % git branch --set-upstream-to=origin/% && git pl ;}; f"
 	bclean = "!f() { git branch --merged ${1-develop} | grep -v " ${1-develop}$" | xargs -r git branch -d; }; f"
 
 	# Checkout
