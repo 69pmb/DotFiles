@@ -1,4 +1,7 @@
+# Database
+
 ## PostgreSQL
+
 - Log in:  
 `psql -h localhost -p 5432 -U <user> -d <database>`
 - List db:  
@@ -21,3 +24,26 @@
 `SELECT con.* FROM pg_catalog.pg_constraint con INNER JOIN pg_catalog.pg_class rel ON rel.oid = con.conrelid INNER JOIN pg_catalog.pg_namespace nsp ON nsp.oid = connamespace WHERE rel.relname = '';`
 - Create db:  
 `create database <db>;`
+
+## MySql
+
+- Connect to a db:  
+    `mysql -udb_name -ppwd`
+- Remove liquibase lock:
+
+```sql
+UPDATE CONFIGURATION_ADMINISTRATION_DATABASECHANGELOGLOCK
+SET LOCKED=0, LOCKGRANTED=null, LOCKEDBY=null ;
+```
+
+- clean db:
+
+```sql
+DROP database db_name;
+CREATE database db_name;
+```
+
+- select db:  
+    `use db_name;`
+- List tables:  
+    `show tables;`

@@ -9,6 +9,8 @@ title: DotFiles
 
 ### 3. [AWS](AWS.md)
 
+### 4. [Database](Database.md)
+
 ### 5. [gitconfig](gitconfig.md)
 
 ### 6. [Maven](Maven.md)
