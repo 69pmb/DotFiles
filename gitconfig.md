@@ -41,7 +41,7 @@ title: Git config
 	oops = ca --no-edit
 	gloops = "!f() { git add . && git oops && git pf;}; f"
 	glops = "!f() { git add $@ && git oops && git pf;}; f"
-	fixme = "!f() { git add . && git fix $1 && git ras $1~;}; f"
+	fixme = "!f() { git fix $1 && git ras $1~;}; f"
 
 	# Stash
 	sh = stash
@@ -64,8 +64,8 @@ title: Git config
 	res = re --skip
 	ras = rei --autosquash
 	fck = "!f() { git fc && git ck $1 && git pl;}; f"
-	main = "!f() { git default | xargs -I % git fck % ;}; f"
-	red = "!f() { git main && git ck - && git up && git default | xargs -I % git re $1 ;}; f"
+	main = "!f() { git default | xargs -I % git ck % && git pl ;}; f"
+	red = "!f() { main=$(git default); git ck $main && git pl && git ck - && git up && git re $main ;}; f"
 
 	# Reflog
 	rl = reflog --date=relative

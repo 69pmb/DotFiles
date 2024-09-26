@@ -25,7 +25,7 @@ docker run --name mysql \
     `docker ps -aq -f status=exited | xargs docker start`
 - Stores last started container'id:  
     `export ID=$(docker ps -lq)`
-- Show you how much disk space you’re using and how much can be potentially reclaimed:  
+- Show you how much disk space you're using and how much can be potentially reclaimed:  
     `docker system df`
 - Remove all stopped containers, networks not used, dangling images, build cache and images that are no longer referenced:  
     `docker system prune -a`
@@ -39,8 +39,10 @@ docker run --name mysql \
     `docker inspect -f "{{ .Mounts }}" <container>`
 - See what processes are running inside a container:  
     `docker top <container>`
-- To see how a container’s file system has changed since it was created:  
+- To see how a container's file system has changed since it was created:  
     `docker diff <container>`
+- To print image layers with their sizes:  
+    `docker history --no-trunc <image>`
 - To copy file to container:  
     `docker cp <file_path> <container:/dir_path>`
 - To copy file from container:  
@@ -48,10 +50,12 @@ docker run --name mysql \
 - Clean up docker datas:
 
 ```bash
-docker image prune -a --filter "until=170h" -f
-docker container prune --filter "until=170h" -f
-docker network prune --filter "until=170h" -f
-docker volume prune --filter "until=170h" -f
+docker image prune -q -f dangling=true | xargs docker rmi
+docker ps -a -q | xargs docker rm
+docker network prune
+docker volume ls -q -f dangling=true | xargs docker volume rm
+# Hard core
+docker system prune -f
 ```
 
 - Run localstack:
