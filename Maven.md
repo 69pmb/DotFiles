@@ -1,5 +1,7 @@
-## Maven
+# Maven
+
 - Execute specific test:  
+
 ```bash
 # For a file
 mvn -Dtest=my.package.myClassTest test
@@ -8,6 +10,7 @@ mvn -Dtest=my.package.myClassTest#myTestCase test
 # If there is nested tests
 mvn -D"test=my.package.myClassTest*" test
 ```
+
 - Skip test:  
 `mvn clean install -DskipTests`  
 `mvn install -q -Dmaven.test.skip=true`

@@ -1,7 +1,7 @@
 ---
 title: Proxy settings
 ---  
-#### Sets proxy for unix systems:  
+#### Sets proxy for unix systems  
 
 ```bash
 export http_proxy=proxy.fr:3128
@@ -10,10 +10,11 @@ export no_proxy=localhost,127.0.0.1,pmb-VirtualBox,$http_proxy,.local
 export NO_PROXY=$no_proxy
 ```
 
-#### Add proxy in /etc/hosts file:
+#### Add proxy in /etc/hosts file
+
 `<ip-address>  proxy.fr`
 
-#### Remove:  
+#### Remove  
 
 ```bash
 unset http_proxy
@@ -22,17 +23,20 @@ unset no_proxy
 unset NO_PROXY
 ```
 
-#### Spring boot:
+#### Spring boot
+
 `-Dhttp.proxyHost=proxy.fr -Dhttp.proxyPort=3128 -Dhttps.proxyHost=proxy.fr -Dhttps.proxyPort=3128 -Dhttps.proxySet=true`
 
-#### Apt-get:
+#### Apt-get
+
 ```bash
 /etc/apt/apt.conf.d/01proxy
 /etc/apt/apt.conf
 Acquire::http::Proxy "http://proxy.fr:3128";
 ```
 
-#### Docker:
+#### Docker
+
 ```bash
 /etc/systemd/system/docker.service.d/http-proxy.conf
 [Service]
@@ -43,5 +47,3 @@ sudo systemctl daemon-reload
 sudo systemctl show --property Environment docker
 sudo systemctl restart docker
 ```
-
-

@@ -2,6 +2,7 @@
 title: eslint config
 ---  
 Using `@angular-eslint/eslint-plugin@~15.2` and `gts@~5.0`
+
 ```json
 {
   "extends": [

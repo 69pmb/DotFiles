@@ -18,7 +18,7 @@ title: ts config
     "noUnusedLocals": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitOverride": true,
-	"noUncheckedIndexedAccess": true,
+    "noUncheckedIndexedAccess": true,
     "importHelpers": true,
     "target": "es2022",
     "lib": ["es2020", "dom"],

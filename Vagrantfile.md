@@ -33,7 +33,7 @@ Vagrant.configure("2") do |config|
     # force shared folder with VB instead of rsync (configured in base box)
     config.vm.synced_folder "../", "/vagrant", type: "virtualbox", disabled: false
 
-	config.vm.boot_timeout = 120
+    config.vm.boot_timeout = 120
     config.vm.network "forwarded_port", guest: 80, host: 80
     config.vm.network "forwarded_port", guest: 443, host: 443
     config.vm.network "forwarded_port", guest: 5432, host: 5432
