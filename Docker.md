@@ -48,10 +48,12 @@ docker run --name mysql \
 - Clean up docker datas:
 
 ```bash
-docker image prune -a --filter "until=170h" -f
-docker container prune --filter "until=170h" -f
-docker network prune --filter "until=170h" -f
-docker volume prune --filter "until=170h" -f
+docker image prune -q -f dangling=true | xargs docker rmi
+docker ps -a -q | xargs docker rm
+docker network prune
+docker volume ls -q -f dangling=true | xargs docker volume rm
+# Hard core
+docker system prune -f
 ```
 
 - Run localstack:

@@ -1,4 +1,5 @@
-## Shell
+# Shell
+
 - [Shell Style guide](https://google.github.io/styleguide/shellguide.html)
 - [ShellCheck](https://www.shellcheck.net) => finds bugs in your shell scripts
 - Match command-line arguments to their help text => [explainshell](https://explainshell.com)
@@ -18,3 +19,7 @@
 `du -hs *`
 - Status of last command ('0' => OK, '1' => KO):  
 `echo $?`
+- Loop over array to curl:  
+`echo -e '27037\n80709\n80730\n80710\n80731' | xargs -I % curl -s -H "PRIVATE-TOKEN: my_token" "https://gitlab.com/api/v4/groups/%/projects" | jq '.[].id' | xargs -I % my_command`
+- Recover multiple fields with _jq_:  
+`jq -r '.[] | [.id, .name]'`
