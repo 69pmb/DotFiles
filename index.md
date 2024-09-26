@@ -30,3 +30,5 @@ title: DotFiles
 ### 14. [ESLint config](eslintrc.md)
 
 ### 15. [TSConfig](tsconfig.md)
+
+### 16. [Openshift](oc.md)
